@@ -1,6 +1,6 @@
 {
   "name": "@vue-interface/lazy",
-  "version": "0.9.1",
+  "version": "1.0.0",
   "description": "A Vue lazy loader directive.",
   "main": "index.js",
   "scripts": {
