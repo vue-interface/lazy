@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>Lazy</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap-reboot.min.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap-grid.min.css">
+        <style>
+            .lds-dual-ring {
+                display: inline-block;
+                width: 80px;
+                height: 80px;
+              }
+              .lds-dual-ring:after {
+                content: " ";
+                display: block;
+                width: 64px;
+                height: 64px;
+                margin: 8px;
+                border-radius: 50%;
+                border: 6px solid #000;
+                border-color: #000 transparent #fff transparent;
+                animation: lds-dual-ring 1.2s linear infinite;
+              }
+              @keyframes lds-dual-ring {
+                0% {
+                  transform: rotate(0deg);
+                }
+                100% {
+                  transform: rotate(360deg);
+                }
+              }              
+        </style>
+    </head>
+    <body>
+        <div id="app" class="container">
+            <h1 class="mb-5">v-lazy</h1>
+
+            <h3>Basic Usage</h3>
+
+            <div class="mb-3">
+                <b>Loads Correctly</b><br>
+                <img v-lazy src="https://via.placeholder.com/350x150?text=Loading..." data-src="https://via.placeholder.com/350x150" @load="onLoad" @error="onError" />
+            </div>
+            
+            <div class="mb-3">
+                <b>Placeholder Content</b><br>
+                <em>Loading with a delay to see the action...</em>
+                <div v-lazy data-src="https://via.placeholder.com/350x150" @loading="loaded = false" @load="e => setTimeout(() => loaded = e.path[0].getAttribute('src'), 3000)">
+                    <div v-if="loaded === false" class="lds-dual-ring"></div>
+                    <div v-else="!!loaded">
+                        <img :src="loaded" />
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <b>Throws Error</b><br>
+                <img v-lazy src="https://via.placeholder.com/350x150?text=Loading..." data-src="htts://via.placeholder.com/350x150" @load="onLoad" @error="onError" />
+            </div>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.5.21/dist/vue.js"></script>
+        <script type="text/javascript" src="./dist/Lazy.umd.js"></script>
+        <script type="text/javascript">
+            const vue = new Vue({
+                el: '#app',
+                directives: {
+                    Lazy
+                },
+                methods: {
+                    setTimeout(fn, delay) {
+                        window.setTimeout(fn, delay);
+                    },
+                    onLoad(e) {
+                        console.log('Loaded', e);
+                    },
+                    onError(e) {
+                        console.log('error', e);
+                    }
+                },
+                data() {
+                    return {
+                        loaded: false
+                    }
+                }
+            });
+        </script>
+    </body>
+</html>
