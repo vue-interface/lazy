@@ -2,7 +2,7 @@
   "name": "@vue-interface/lazy",
   "version": "1.0.0",
   "description": "A Vue lazy loader directive.",
-  "main": "index.js",
+  "main": "./dist/Lazy.umd.js",
   "scripts": {
     "watch": "npm run serve",
     "serve": "vue-cli-service build --target lib --name=Lazy ./main.vue --watch",
@@ -36,19 +36,24 @@
   },
   "homepage": "https://github.com/vue-interface/lazy/docs#readme",
   "dependencies": {
-    "vue": "^2.6.11"
+    "vue": "^2.6.12"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "~4.3.0",
-    "@vue/cli-plugin-eslint": "~4.3.0",
-    "@vue/cli-service": "~4.3.0",
-    "@vuepress/plugin-register-components": "^1.5.0",
+    "@vue/cli-plugin-babel": "^4.5.7",
+    "@vue/cli-plugin-eslint": "^4.5.7",
+    "@vue/cli-service": "^4.5.7",
+    "@vuepress/plugin-register-components": "^1.6.0",
     "babel-eslint": "^10.1.0",
-    "eslint": "^6.7.2",
-    "eslint-plugin-vue": "^6.2.2",
+    "eslint": "^7.10.0",
+    "eslint-plugin-vue": "^7.0.1",
     "markdown-it-meta": "0.0.1",
-    "vue-template-compiler": "^2.6.11",
-    "vuepress": "^1.5.0",
+    "vue-template-compiler": "^2.6.12",
+    "vuepress": "^1.6.0",
     "vuepress-plugin-template-constants": "^0.2.1"
-  }
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ]
 }
