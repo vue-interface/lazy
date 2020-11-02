@@ -1,4 +1,4 @@
-function Lazy(el, binding) {
+function lazy(el, binding) {
     // If the image already has a source and source is same as lazy loader,
     // then kill it.
     if( el.getAttribute('src') && 
@@ -40,7 +40,16 @@ function Lazy(el, binding) {
     }
 }
 
-export default {
-    inserted: Lazy,
-    updated: Lazy
+export default function(el, binding, value) {
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(({ isIntersecting }) => {
+            if(isIntersecting) {
+                lazy(el, binding);
+                
+                observer.disconnect();
+            }
+        });
+    });
+
+    observer.observe(el);
 };
