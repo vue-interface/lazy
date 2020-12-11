@@ -2,7 +2,9 @@
   "name": "@vue-interface/lazy",
   "version": "1.0.3",
   "description": "A Vue lazy loader directive.",
-  "main": "./dist/Lazy.umd.js",
+  "main": "./index.js",
+  "unpkg": "dist/Lazy.umd.min.js",
+  "browser": "dist/Lazy.umd.min.js",
   "scripts": {
     "watch": "npm run serve",
     "serve": "vue-cli-service build --target lib --name=Lazy ./main.vue --watch",
