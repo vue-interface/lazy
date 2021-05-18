@@ -37,6 +37,7 @@
   },
   "homepage": "https://github.com/vue-interface/lazy/docs#readme",
   "dependencies": {
+    "@vue-interface/utils": "^0.9.34",
     "vue": "^2.6.12"
   },
   "devDependencies": {
