@@ -2663,7 +2663,7 @@ function lazy(el, binding) {
     el.src = el.getAttribute('data-src');
     el.removeAttribute('data-src');
   } else {
-    el.dispatchEvent(new Event('loading')); // Create an image node
+    el.dispatchEvent(event_event('loading')); // Create an image node
 
     var img = document.createElement('img'); // Set the source
 

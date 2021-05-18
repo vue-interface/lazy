@@ -14,7 +14,7 @@ function lazy(el, binding) {
         el.removeAttribute('data-src');
     }
     else {
-        el.dispatchEvent(new Event('loading'));
+        el.dispatchEvent(event('loading'));
         
         // Create an image node
         const img = document.createElement('img');
