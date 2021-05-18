@@ -41,7 +41,7 @@
 
             <div class="mb-3">
                 <b>Loads Correctly</b><br>
-                <img v-lazy src="https://via.placeholder.com/350x150?text=Loading..." data-src="https://via.placeholder.com/350x150" @load="onLoad" @error="onError" />
+                <img v-lazy src="https://via.placeholder.com/350x150?text=Loading..." data-src="https://via.placeholder.com/350x150" @load="onLoad" />
             </div>
             
             <div class="mb-3">
@@ -57,7 +57,7 @@
 
             <div>
                 <b>Throws Error</b><br>
-                <img v-lazy src="https://via.placeholder.com/350x150?text=Loading..." data-src="htts://via.placeholder.com/350x150" @load="onLoad" @error="onError" />
+                <img v-lazy src="https://via.placeholder.com/350x150?text=Loading..." data-src="htts://via.placeholder.com/350x150" @error="onError" />
             </div>
         </div>
 

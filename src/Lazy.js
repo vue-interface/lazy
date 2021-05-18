@@ -1,3 +1,25 @@
+function event(key, eventInit) {
+    // Ensure the eventInit is an object.
+    eventInit = Object.assign({}, {
+        bubbles: false,
+        cancelable: false,
+        composed: false
+    }, eventInit || {});
+    
+    // If the `Event` class is a constructor, use it.
+    if(typeof(Event) === 'function') {
+        return new Event(key, eventInit);
+    }
+    
+    // Otherwise, assume this to be a legacy browser.
+    const event = document.createEvent('Event');
+
+    // Define that the event name is 'build'.
+    event.initEvent(key, eventInit.bubbles, eventInit.cancelable);
+    
+    return event;
+}
+
 function lazy(el, binding) {
     // If the image already has a source and source is same as lazy loader,
     // then kill it.
@@ -30,12 +52,12 @@ function lazy(el, binding) {
             }
 
             if(el.tagName !== 'IMG') {
-                el.dispatchEvent(new e.constructor(e.type, e));
+                el.dispatchEvent(event(e.type, e));
             }
         });
 
         img.addEventListener('error', e => {
-            el.dispatchEvent(new e.constructor(e.type, e));
+            el.dispatchEvent(event(e.type, e));
         });
     }
 }

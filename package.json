@@ -6,8 +6,8 @@
   "unpkg": "dist/Lazy.umd.min.js",
   "scripts": {
     "watch": "npm run serve",
-    "serve": "vue-cli-service build --target lib --name=Lazy ./main.vue --watch",
-    "build": "vue-cli-service build --target lib --name=Lazy ./main.vue",
+    "serve": "vue-cli-service build --target lib --name=Lazy ./index.js --watch --dev",
+    "build": "vue-cli-service build --target lib --name=Lazy ./index.js",
     "lint": "vue-cli-service lint",
     "fix": "vue-cli-service lint --fix",
     "pre-release": "npm run build; git add . -A; git commit -m 'pre-release commit'",
@@ -41,7 +41,6 @@
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^4.5.7",
-    "@vue/cli-plugin-eslint": "^4.5.7",
     "@vue/cli-service": "^4.5.7",
     "@vuepress/plugin-register-components": "^1.6.0",
     "babel-eslint": "^10.1.0",
@@ -51,6 +50,7 @@
     "vue-template-compiler": "^2.6.12",
     "vuepress": "^1.6.0",
     "vuepress-plugin-template-constants": "^0.2.1",
+    "webpack": "^4.0",
     "webpack-manifest-plugin": "^2.2.0"
   },
   "browserslist": [
