@@ -1,5 +1,3 @@
-import { event } from '@vue-interface/utils';
-
 function lazy(el, binding) {
     // If the image already has a source and source is same as lazy loader,
     // then kill it.
@@ -14,7 +12,7 @@ function lazy(el, binding) {
         el.removeAttribute('data-src');
     }
     else {
-        el.dispatchEvent(event('loading'));
+        el.dispatchEvent(new Event('loading'));
         
         // Create an image node
         const img = document.createElement('img');
@@ -32,28 +30,30 @@ function lazy(el, binding) {
             }
 
             if(el.tagName !== 'IMG') {
-                el.dispatchEvent(event(e.type, e));
+                el.dispatchEvent(new Event(e.type, e));
             }
         });
 
         if(el.tagName !== 'IMG') {
             img.addEventListener('error', e => {
-                el.dispatchEvent(event(e.type, e));
+                el.dispatchEvent(new Event(e.type, e));
             });
         }
     }
 }
 
-export default function(el, binding, value) {
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(({ isIntersecting }) => {
-            if(isIntersecting) {
-                lazy(el, binding);
+export default {
+    beforeMount(el, binding, value) {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(({ isIntersecting }) => {
+                if(isIntersecting) {
+                    lazy(el, binding);
                 
-                observer.disconnect();
-            }
+                    observer.disconnect();
+                }
+            });
         });
-    });
 
-    observer.observe(el);
+        observer.observe(el);
+    }
 };
